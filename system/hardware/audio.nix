@@ -6,7 +6,7 @@ in
 {
   options.my.audio.quality = mkOption {
     type = types.enum [ "normal" "high" ];
-    default = "high";
+    default = "normal";
     description = ''
       Audio quality preset.
       - high: 192kHz sample rate, S32LE format, wide allowed-rates range
