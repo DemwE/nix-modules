@@ -19,6 +19,27 @@ let
       pkgs.libXrender
       pkgs.libXtst
       pkgs.libXi
+      pkgs.glib
+      pkgs.gdk-pixbuf
+      pkgs.cairo
+      pkgs.pango
+      pkgs.fontconfig
+      pkgs.freetype
+      pkgs.libXxf86vm
+      pkgs.libGL
+      pkgs.gtk2
+      pkgs.gtk3
+      pkgs.atk
+    ];
+
+    # BellSoft bundles its own ffmpeg libs inside the JDK with sonames that
+    # differ from nixpkgs. Ignore them — they resolve via RPATH within the JDK.
+    # Uses fnmatch glob patterns.
+    autoPatchelfIgnoreMissingDeps = [
+      "libavcodec.so.*"
+      "libavformat.so.*"
+      "libavcodec-ffmpeg.so.*"
+      "libavformat-ffmpeg.so.*"
     ];
 
     installPhase = ''
