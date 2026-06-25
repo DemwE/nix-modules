@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  nix-flatpak,
   ...
 }:
 /*
@@ -15,10 +16,6 @@
   home-manager.users.<name>.services.flatpak.packages.
 */
 let
-  nix-flatpak = builtins.fetchTarball {
-    url    = "https://github.com/gmodena/nix-flatpak/archive/refs/tags/v0.7.0.tar.gz";
-    sha256 = "1jsxx20jv2dmf75563i9ldyva99d0qcls2rm424ikx83hnasx47d";
-  };
   cfg = config.my.features.flatpak;
   inherit (lib) mkEnableOption mkIf;
 in
