@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 {
   options.my.services = {
     ssh = {
@@ -40,7 +40,17 @@
     })
 
     (lib.mkIf config.my.services.printing.enable {
-      services.printing.enable = true;
+      services.printing = {
+        enable = true;
+        browsing = true;
+        browsed.enable = true;
+        openFirewall = true;
+        webInterface = true;
+        drivers = with pkgs; [
+          hplip
+          brlaser
+        ];
+      };
     })
 
     (lib.mkIf config.my.services.storage.enable {
