@@ -17,6 +17,6 @@ pkgs.lib.mergeAttrsList (
     ./utils/beets.nix
     ./toolchains
     ./ide
-    ./libericaJDK
+    ./liberica
   ]
 )
