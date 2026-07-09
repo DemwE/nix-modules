@@ -5,7 +5,7 @@ pkgs: {
   toolchain-nodejs = pkgs.symlinkJoin {
     name = "toolchain-nodejs";
     paths = [
-      pkgs.unstable.pnpm
+      pkgs.pnpm
       pkgs.nodejs_26
     ];
   };
