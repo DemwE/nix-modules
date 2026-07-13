@@ -16,7 +16,7 @@ in
     mkEnableOption "Enable OBS Studio with CUDA support";
 
   config = mkIf cfg.enable {
-    programs.obs = {
+    programs.obs-studio = {
       enable = true;
       package = pkgs.obs-studio.override {
         cudaSupport = true;
