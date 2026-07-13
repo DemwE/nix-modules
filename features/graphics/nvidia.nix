@@ -43,6 +43,7 @@ in
 
   config = mkIf cfg.enable {
     # NVIDIA-specific VA-API bridge — merges into hardware.graphics set by system/graphics.nix
+    hardware.graphics.enable = true;
     hardware.graphics.extraPackages = with pkgs; [
       nvidia-vaapi-driver
     ];

@@ -16,6 +16,7 @@
     ./desktop/howdy.nix
     ./desktop/iio-sensor-proxy.nix
     ./desktop/steam.nix
+    ./desktop/obs.nix
     ./graphics/supergfxd.nix
     ./tools/ollama.nix
     ./tools/wireshark.nix
