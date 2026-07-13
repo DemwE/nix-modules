@@ -30,9 +30,9 @@
         eza
         fzf
         custom.switch
+        custom.boot
         custom.remote-switch
         custom.update-lock
-        custom.switch-check
         custom.cls
         custom.compress
         custom.decompress
