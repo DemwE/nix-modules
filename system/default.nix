@@ -6,6 +6,7 @@
     ./core/nix-settings.nix
     ./core/shell.nix
     ./core/fonts.nix
+    ./core/kmscon.nix
     ./hardware/audio.nix
     ./hardware/graphics.nix
     ./services/housekeeping.nix
