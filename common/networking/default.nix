@@ -89,6 +89,8 @@
       allowedUDPPortRanges = config.my.networking.firewall.allowedUDPPortRanges;
     };
 
+    networking.nftables.enable = true;
+
     networking.hosts = {
       "127.0.0.1" = [ "lh.me" ];
     };
