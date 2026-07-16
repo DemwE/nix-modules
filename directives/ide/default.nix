@@ -10,4 +10,5 @@ pkgs:
     ./rider.nix
     ./idea.nix
     ./datagrip.nix
+    ./goland.nix
   ])
