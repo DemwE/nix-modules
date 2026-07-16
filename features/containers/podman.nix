@@ -29,8 +29,8 @@ in
     # Enable daemon and start at boot
     virtualisation.podman = {
       enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = cfg.dockerSocket.enable or true;
+      dockerCompat = !config.my.features.docker.enable;
+      dockerSocket.enable = !config.my.features.docker.enable;
       extraPackages = [ pkgs.slirp4netns ];
       autoPrune = {
         enable = true;
