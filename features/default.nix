@@ -9,6 +9,7 @@
     ./tools/nix-helper.nix
     ./desktop/flatpak.nix
     ./virtualization/qemu.nix
+    ./virtualization/incus.nix
     ./security/polkit.nix
     ./desktop/gdm.nix
     ./desktop/gnome.nix
