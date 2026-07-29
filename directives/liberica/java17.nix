@@ -8,20 +8,20 @@ let
 in {
   java17 = mkLiberica {
     featureVersion = 17;
-    version        = "17.0.19+11";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/17.0.19+11/bellsoft-jdk17.0.19+11-linux-amd64.tar.gz";
-    sha256         = "sha256-BxMOgAIhtx4sTvBNoRXSVfk/Qt3k4csMgm+LW5KNJ60=";
+    version        = "17.0.20+10";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/17.0.20+10/bellsoft-jdk17.0.20+10-linux-amd64.tar.gz";
+    sha256         = "sha256-HZW5ggYMFt7BAf2bTc2qPAFr2CAjPyc5mT6YbqFqOWc=";
   };
   java17-full = mkLiberica {
     featureVersion = 17;
-    version        = "17.0.19+11";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/17.0.19+11/bellsoft-jdk17.0.19+11-linux-amd64-full.tar.gz";
-    sha256         = "sha256-p4csSWSNXQo2ko1IJbVbmmxbqkh8bTWJZ/rqM421pR4=";
+    version        = "17.0.20+10";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/17.0.20+10/bellsoft-jdk17.0.20+10-linux-amd64-full.tar.gz";
+    sha256         = "sha256-j84UmK41WkvVUFKdiblfxYngX2parqV5NPiTMQcR6Qk=";
   };
   jre17 = mkLiberica {
     featureVersion = 17;
-    version        = "17.0.19+11";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/17.0.19+11/bellsoft-jre17.0.19+11-linux-amd64.tar.gz";
-    sha256         = "sha256-iq1QlAfPhwGjTfhbntQ3Vp5UKGO9nmv0wkY784+Guik=";
+    version        = "17.0.20+10";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/17.0.20+10/bellsoft-jre17.0.20+10-linux-amd64.tar.gz";
+    sha256         = "sha256-Qv5ZYg8bcrJH+QxLU5IQYzbYEtG4LyozIPuurPLQDgU=";
   };
 }

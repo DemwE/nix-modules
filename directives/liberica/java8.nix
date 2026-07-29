@@ -8,20 +8,20 @@ let
 in {
   java8 = mkLiberica {
     featureVersion = 8;
-    version        = "8u492+9";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/8u492+9/bellsoft-jdk8u492+9-linux-amd64.tar.gz";
-    sha256         = "sha256-I9Ub8QYGdCXJT5KG0e51eaESoBroz3/WmzqSDgiKe+U=";
+    version        = "8u502+9";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/8u502+9/bellsoft-jdk8u502+9-linux-amd64.tar.gz";
+    sha256         = "sha256-mHgRaxHLSIheilyFBwcnKaG/9FZ2z7dcrcgRIXtwg3U=";
   };
   java8-full = mkLiberica {
     featureVersion = 8;
-    version        = "8u492+9";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/8u492+9/bellsoft-jdk8u492+9-linux-amd64-full.tar.gz";
-    sha256         = "sha256-5HxH1Vie0z0fw+sozn6oOSvLPBsNWFqxjUwbt6kFVl4=";
+    version        = "8u502+9";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/8u502+9/bellsoft-jdk8u502+9-linux-amd64-full.tar.gz";
+    sha256         = "sha256-O3BoiqNQKy6yDDxFJ4PALyjpPSZuVkpFQChu+1cuWgY=";
   };
   jre8 = mkLiberica {
     featureVersion = 8;
-    version        = "8u492+9";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/8u492+9/bellsoft-jre8u492+9-linux-amd64.tar.gz";
-    sha256         = "sha256-yKfEGEgfsuNa9aavsrwCpoYs4/MNiis4/Z8YzYuHrgc=";
+    version        = "8u502+9";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/8u502+9/bellsoft-jre8u502+9-linux-amd64.tar.gz";
+    sha256         = "sha256-9FRkRcPGeC1rrJKnxDpAKsadIsAZwVQTEHR+zdAqQRs=";
   };
 }

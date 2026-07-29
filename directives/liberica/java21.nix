@@ -8,20 +8,20 @@ let
 in {
   java21 = mkLiberica {
     featureVersion = 21;
-    version        = "21.0.11+11";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/21.0.11+11/bellsoft-jdk21.0.11+11-linux-amd64.tar.gz";
-    sha256         = "sha256-ItvOkihG614X1q9AOTrG9MFYW1qHui9j1plr8GgrPSs=";
+    version        = "21.0.12+10";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/21.0.12+10/bellsoft-jdk21.0.12+10-linux-amd64.tar.gz";
+    sha256         = "sha256-I7SOWfRwmVl/hDeMCnZcg1iNytf2mH6y/vDQjn7hn5Y=";
   };
   java21-full = mkLiberica {
     featureVersion = 21;
-    version        = "21.0.11+11";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/21.0.11+11/bellsoft-jdk21.0.11+11-linux-amd64-full.tar.gz";
-    sha256         = "sha256-KXgbpRpMDJHorhOlByUuhZWO5DAS0/79GOk5hL2wiJM=";
+    version        = "21.0.12+10";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/21.0.12+10/bellsoft-jdk21.0.12+10-linux-amd64-full.tar.gz";
+    sha256         = "sha256-ywMYQyNrORFuMHRezNk+6MpP1odK7zm88id4LxQ+YJQ=";
   };
   jre21 = mkLiberica {
     featureVersion = 21;
-    version        = "21.0.11+11";
-    url            = "https://github.com/bell-sw/Liberica/releases/download/21.0.11+11/bellsoft-jre21.0.11+11-linux-amd64.tar.gz";
-    sha256         = "sha256-bSQf1wzJSvZnozyE7F+H0CthgVsIHSVcqPhaG233LUw=";
+    version        = "21.0.12+10";
+    url            = "https://github.com/bell-sw/Liberica/releases/download/21.0.12+10/bellsoft-jre21.0.12+10-linux-amd64.tar.gz";
+    sha256         = "sha256-QFq2MCl5/5Iuc09k5P0JFAWRnLFwDKaxrSybec63MmU=";
   };
 }
