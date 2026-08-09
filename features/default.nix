@@ -19,6 +19,7 @@
     ./desktop/steam.nix
     ./desktop/obs.nix
     ./desktop/dokploy.nix
+    ./desktop/hyprland.nix
     ./graphics/supergfxd.nix
     ./tools/ollama.nix
     ./tools/wireshark.nix
