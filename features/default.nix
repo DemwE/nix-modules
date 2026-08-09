@@ -20,6 +20,7 @@
     ./desktop/obs.nix
     ./desktop/dokploy.nix
     ./desktop/hyprland.nix
+    ./desktop/xdg.nix
     ./graphics/supergfxd.nix
     ./tools/ollama.nix
     ./tools/wireshark.nix
