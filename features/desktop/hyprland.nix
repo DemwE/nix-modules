@@ -20,7 +20,6 @@ in
 
     environment.systemPackages = with pkgs; [
       kitty
-      quickshell
     ];
 
     environment.sessionVariables = {
