@@ -1,6 +1,7 @@
 { pkgs, lib, config, ... }:
 let
-  hasNvidiaFgpm = config.my.features.nvidia.finegrainedPowerManagement or false;
+  hasTlp = config.my.features.tlp.enable;
+  hasNvidiaFgpm = config.my.features.nvidia.runtimePowerManagement or false;
 
   mkPowerScript = name: body: pkgs.writeShellScriptBin name ''
     set -euo pipefail
@@ -17,8 +18,12 @@ let
 
   # ── Status ────────────────────────────────────────────────────────────────────
   powerStatus = pkgs.writeShellScriptBin "power-status" ''
-    echo "── Active PPD profile ──"
-    ${pkgs.power-profiles-daemon}/bin/powerprofilesctl 2>/dev/null || echo "(PPD not running)"
+    echo "── Active power profile ──"
+    ${if hasTlp then ''
+      ${pkgs.tlp}/bin/tlp-stat -s 2>/dev/null || echo "(TLP not running)"
+    '' else ''
+      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl 2>/dev/null || echo "(PPD not running)"
+    ''}
 
     echo ""
     echo "── CPU governors ──"
@@ -106,15 +111,15 @@ let
   '';
 in
 {
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = lib.mkDefault (!hasTlp);
 
-  systemd.services.ppd-hook = {
+  systemd.services.ppd-hook = lib.mkIf (!hasTlp) {
     description = "Custom power profile hooks (NVIDIA, turbo) on top of PPD";
-    
+
     after = [ "power-profiles-daemon.service" "dbus.service" ];
     requires = [ "power-profiles-daemon.service" ];
     bindsTo = [ "power-profiles-daemon.service" ];
-    wantedBy = [ "power-profiles-daemon.service" ]; 
+    wantedBy = [ "power-profiles-daemon.service" ];
     serviceConfig = {
       Type = "simple";
       Restart = "on-failure";
@@ -123,9 +128,13 @@ in
     };
   };
 
-  environment.systemPackages = [ powerSave balanced performance powerStatus ];
+  environment.systemPackages = [ powerStatus ] ++ lib.optionals (!hasTlp) [
+    powerSave
+    balanced
+    performance
+  ];
 
-  security.sudo.extraRules = [
+  security.sudo.extraRules = lib.optionals (!hasTlp) [
     {
       groups = [ "wheel" ];
       commands = map (script: {
