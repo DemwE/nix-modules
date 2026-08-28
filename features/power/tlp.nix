@@ -36,6 +36,8 @@ in
 
         WIFI_PWR_ON_AC = "on";
         WIFI_PWR_ON_BAT = "on";
+
+        SLEEP_STATE = "suspend";
       };
     };
   };
