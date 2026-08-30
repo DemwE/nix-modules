@@ -11,4 +11,5 @@ pkgs:
     ./haskell.nix
     ./esp.nix
     ./odin.nix
+    ./nasm.nix
   ])
