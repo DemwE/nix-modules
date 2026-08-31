@@ -20,6 +20,9 @@
     tailscale = {
       enable = lib.mkEnableOption "Enable Tailscale VPN client";
     };
+    fwupd = {
+      enable = lib.mkEnableOption "Enable fwupd for firmware updates";
+    };
   };
 
   config = lib.mkMerge [
@@ -70,6 +73,10 @@
 
     (lib.mkIf config.my.services.tailscale.enable {
       services.tailscale.enable = true;
+    })
+
+    (lib.mkIf config.my.services.fwupd.enable {
+      services.fwupd.enable = true;
     })
   ];
 }

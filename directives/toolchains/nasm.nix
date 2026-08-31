@@ -6,6 +6,8 @@ pkgs: {
     name = "toolchain-nasm";
     paths = [
       pkgs.nasm
+      pkgs.nasmfmt
+      pkgs.asm-lsp
     ];
   };
 }
