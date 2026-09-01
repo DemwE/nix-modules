@@ -27,6 +27,7 @@
         usbutils
         pciutils
         net-tools
+        ripgrep
         eza
         fzf
         custom.switch

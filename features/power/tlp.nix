@@ -43,6 +43,10 @@ in
 
         WIFI_PWR_ON_AC = "off";
         WIFI_PWR_ON_BAT = "on";
+
+        # Allow the battery to charge to 100% (disable 80% charge limit)
+        START_CHARGE_THRESH_BAT0 = 0;
+        STOP_CHARGE_THRESH_BAT0 = 100;
       };
     };
   };
