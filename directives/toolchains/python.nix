@@ -5,7 +5,8 @@ pkgs: {
   toolchain-python = pkgs.symlinkJoin {
     name = "toolchain-python";
     paths = [
-      pkgs.python313
+      pkgs.python315
+      pkgs.unstable.uv
     ];
   };
 }
