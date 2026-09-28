@@ -1,14 +1,17 @@
-# WebStorm package definition
+# WebStorm wrapper
 # pkgs: { webstorm }
-# Uses ~/.toolchains/nodejs/bin — stable symlink managed by home-manager (toolchains.nix)
-# Node.js versions detected via ~/.nvm/versions/node/ symlinks (home/demwe/nodejs.nix)
+# ~/.toolchains/nodejs/bin is a stable symlink (home/demwe/toolchains.nix);
+# per-version installs come from ~/.nvm/versions/node/ (home/demwe/nodejs.nix).
 
-pkgs: {
-  webstorm = pkgs.unstable.jetbrains.webstorm.overrideAttrs (oldAttrs: {
-    nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
-    postInstall = (oldAttrs.postInstall or "") + ''
-      wrapProgram $out/bin/webstorm \
-        --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
+pkgs:
+let
+  wrap = import ./wrap.nix { inherit pkgs; };
+in
+{
+  webstorm = wrap {
+    package = pkgs.unstable.webstorm;
+    wrapperArgs = ''
+      --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
     '';
-  });
+  };
 }

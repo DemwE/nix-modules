@@ -1,17 +1,18 @@
-# Rider package definition
+# Rider wrapper
 # pkgs: { rider }
-# DOTNET_ROOT points at ~/.toolchains/dotnet — the standard .NET SDK discovery mechanism.
-# Rider (and all .NET tooling) reads DOTNET_ROOT to locate the SDK.
-# ~/.toolchains/nodejs/bin injected so the GitHub Copilot plugin can find Node.js.
+# DOTNET_ROOT is the standard .NET SDK discovery mechanism.
+# Node.js for the GitHub Copilot plugin.
 
 pkgs:
+let
+  wrap = import ./wrap.nix { inherit pkgs; };
+in
 {
-  rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: {
-    nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
-    postInstall = (oldAttrs.postInstall or "") + ''
-      wrapProgram $out/bin/rider \
-        --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"' \
-        --run 'export DOTNET_ROOT="$HOME/.toolchains/dotnet"'
+  rider = wrap {
+    package = pkgs.unstable.rider;
+    wrapperArgs = ''
+      --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"' \
+      --run 'export DOTNET_ROOT="$HOME/.toolchains/dotnet"'
     '';
-  });
+  };
 }

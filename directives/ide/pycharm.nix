@@ -1,15 +1,17 @@
-# PyCharm package definition
+# PyCharm wrapper
 # pkgs: { pycharm }
-# Note: ~/.pyenv/versions/ symlinks (created by home/demwe/python.nix) let PyCharm auto-detect Python interpreters.
-# ~/.toolchains/nodejs/bin injected so the GitHub Copilot plugin can find Node.js.
+# ~/.pyenv/versions/ symlinks (home/demwe/python.nix) let PyCharm auto-detect
+# interpreters. Node.js for the GitHub Copilot plugin.
 
 pkgs:
+let
+  wrap = import ./wrap.nix { inherit pkgs; };
+in
 {
-  pycharm = pkgs.unstable.jetbrains.pycharm.overrideAttrs (oldAttrs: {
-    nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
-    postInstall = (oldAttrs.postInstall or "") + ''
-      wrapProgram $out/bin/pycharm \
-        --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
+  pycharm = wrap {
+    package = pkgs.unstable.pycharm;
+    wrapperArgs = ''
+      --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
     '';
-  });
+  };
 }

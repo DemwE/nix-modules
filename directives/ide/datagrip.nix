@@ -1,13 +1,16 @@
-# DataGrip package definition
+# DataGrip wrapper
 # pkgs: { datagrip }
-# Uses ~/.toolchains/nodejs/bin so plugins (e.g. GitHub Copilot) can find Node.js.
+# Node.js for plugins (GitHub Copilot).
 
-pkgs: {
-	datagrip = pkgs.jetbrains.datagrip.overrideAttrs (oldAttrs: {
-		nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
-		postInstall = (oldAttrs.postInstall or "") + ''
-			wrapProgram $out/bin/datagrip \
-				--run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
-		'';
-	});
+pkgs:
+let
+  wrap = import ./wrap.nix { inherit pkgs; };
+in
+{
+  datagrip = wrap {
+    package = pkgs.unstable.datagrip;
+    wrapperArgs = ''
+      --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
+    '';
+  };
 }
