@@ -14,9 +14,9 @@ in
 
     runtimePowerManagement = mkEnableOption ''
       Enable fine-grained runtime power management for NVIDIA GPU.
-      Sets NVreg_DynamicPowerManagement=0x01 and adds udev rules to put
+      Sets NVreg_DynamicPowerManagement=0x02 and adds udev rules to put
       NVIDIA PCI devices into auto power/control — allows D3cold (~1W idle).
-      Requires powerManagement.enable = true (already set).
+      Independent of hardware.nvidia.powerManagement.enable.
     '';
 
     dynamicBoost = mkEnableOption ''
@@ -56,8 +56,10 @@ in
       modesetting.enable = true;
 
       # Power management settings
-      powerManagement.enable = true;
-      powerManagement.finegrained = cfg.runtimePowerManagement; # D3cold + udev rules + NVreg_DynamicPowerManagement=1
+      # Legacy nvidia-suspend/resume (chvt 63 on every s2idle) conflicts with
+      # finegrained RTD3 below and froze graphical apps on NixBook.
+      powerManagement.enable = false;
+      powerManagement.finegrained = cfg.runtimePowerManagement; # D3cold + udev rules + NVreg_DynamicPowerManagement=0x02
 
       # Dynamic Boost: nvidia-powerd shifts TGP based on combined workload.
       # This is opt-in because it fails on some laptops/firmware.

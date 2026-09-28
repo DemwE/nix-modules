@@ -34,8 +34,8 @@ in
         RUNTIME_PM_ON_AC = "on";
         RUNTIME_PM_ON_BAT = "auto";
 
-        # Disable NMI wakeups (reduces unnecessary CPU wakeups)
-        NMI_WATCHDOG = 0;
+        # Keep lockup detection on so freezes show up in the kernel log
+        NMI_WATCHDOG = 1;
 
         # Audio and Wi-Fi power saving
         SOUND_POWER_SAVE_ON_AC = 0;
