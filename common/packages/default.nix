@@ -30,6 +30,8 @@
         ripgrep
         eza
         fzf
+        compsize
+        ncdu
         custom.switch
         custom.boot
         custom.remote-switch
