@@ -10,6 +10,5 @@ pkgs:
     ./bun.nix
     ./haskell.nix
     ./esp.nix
-    ./odin.nix
     ./nasm.nix
   ])
