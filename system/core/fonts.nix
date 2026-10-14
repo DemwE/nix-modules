@@ -6,5 +6,6 @@
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     ibm-plex
+    corefonts
   ];
 }
