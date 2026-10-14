@@ -9,7 +9,7 @@ let
 in
 {
   webstorm = wrap {
-    package = pkgs.unstable.webstorm;
+    package = pkgs.unstable.jetbrains.webstorm;
     wrapperArgs = ''
       --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
     '';

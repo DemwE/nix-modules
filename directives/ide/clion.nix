@@ -10,7 +10,7 @@ let
 in
 {
   clion = wrap {
-    package = pkgs.unstable.clion;
+    package = pkgs.unstable.jetbrains.clion;
     wrapperArgs = ''
       --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
     '';

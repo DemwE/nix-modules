@@ -9,7 +9,7 @@ let
 in
 {
   rider = wrap {
-    package = pkgs.unstable.rider;
+    package = pkgs.unstable.jetbrains.rider;
     wrapperArgs = ''
       --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"' \
       --run 'export DOTNET_ROOT="$HOME/.toolchains/dotnet"'

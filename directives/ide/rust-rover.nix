@@ -9,7 +9,7 @@ let
 in
 {
   rust-rover = wrap {
-    package = pkgs.unstable.rust-rover;
+    package = pkgs.unstable.jetbrains.rust-rover;
     wrapperArgs = ''
       --run 'export PATH="$HOME/.toolchains/nodejs/bin:$HOME/.toolchains/rust/bin:$HOME/.cargo/bin:$PATH"'
     '';

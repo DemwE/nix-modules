@@ -8,7 +8,7 @@ let
 in
 {
   datagrip = wrap {
-    package = pkgs.unstable.datagrip;
+    package = pkgs.unstable.jetbrains.datagrip;
     wrapperArgs = ''
       --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
     '';

@@ -11,7 +11,7 @@ let
 in
 {
   idea = wrap {
-    package = pkgs.unstable.intellij-idea;
+    package = pkgs.unstable.jetbrains.idea;
     wrapperArgs = ''
       --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
     '';

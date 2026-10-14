@@ -9,7 +9,7 @@ let
 in
 {
   pycharm = wrap {
-    package = pkgs.unstable.pycharm;
+    package = pkgs.unstable.jetbrains.pycharm;
     wrapperArgs = ''
       --run 'export PATH="$HOME/.toolchains/nodejs/bin:$PATH"'
     '';
