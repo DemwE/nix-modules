@@ -12,5 +12,6 @@ pkgs.lib.mergeAttrsList (
     ./rider.nix
     ./idea.nix
     ./datagrip.nix
+    ./phpstorm
   ]
 )
