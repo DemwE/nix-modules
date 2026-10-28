@@ -28,6 +28,7 @@ in
         glib
         zlib
         openssl
+        libGL
       ];
     };
   };

@@ -96,15 +96,16 @@
     };
 
     networking.networkmanager.dhcp = "internal";
-    networking.networkmanager.dns = lib.mkForce "none";
+    # networking.networkmanager.dns = lib.mkForce "none";
+    networking.networkmanager.dns = "systemd-resolved";
     networking.networkmanager.wifi.backend = "iwd";
 
     services.resolved = {
       enable = true;
       settings.Resolve = {
-        DNSSEC = "true";
+        DNSSEC = "false";
         DNSOverTLS = "opportunistic";
-        Domains = [ "~." ];
+        Domains = [ "~."];
         DNS = [
           # ipv4 main
           "1.1.1.1#cloudflare-dns.com"
