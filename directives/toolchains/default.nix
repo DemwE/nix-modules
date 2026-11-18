@@ -11,4 +11,5 @@ pkgs:
     ./haskell.nix
     ./esp.nix
     ./nasm.nix
+    ./php.nix
   ])
