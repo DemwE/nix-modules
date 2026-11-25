@@ -1,10 +1,10 @@
-{ ... }:
+{ lib, config, ... }:
 {
-  # Core Nix maintenance
+  # Core Nix maintenance (fallback when nh.clean is not enabled)
   nix.gc = {
-    automatic = true;
+    automatic = lib.mkDefault (!(config.my.features.nix-helper.enable or false));
     dates = "daily";
-    options = "--delete-older-than 5d";
+    options = "--delete-older-than 14d";
   };
   nix.settings = {
     auto-optimise-store = true;

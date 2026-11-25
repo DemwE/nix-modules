@@ -7,6 +7,13 @@ in
   options.my.features.nix-helper.enable = mkEnableOption "Nix helper tool";
 
   config = mkIf cfg.enable {
-    programs.nh.enable = true;
+    programs.nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        dates = "daily";
+        extraArgs = "--keep 5 --keep-since 7d";
+      };
+    };
   };
 }

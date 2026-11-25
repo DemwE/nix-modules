@@ -53,35 +53,35 @@ let
     set -euo pipefail
     export PATH=${lib.makeBinPath [ pkgs.glib pkgs.gnugrep pkgs.coreutils ]}:$PATH
 
+    ${lib.optionalString hasNvidiaFgpm ''
+    set_nvidia_power() {
+      local mode="$1"
+      for dev in /sys/bus/pci/devices/*/power/control; do
+        vendor=$(cat "$(dirname "$dev")/vendor" 2>/dev/null || true)
+        if [[ "$vendor" == "0x10de" ]]; then
+          echo "$mode" > "$dev" 2>/dev/null || true
+        fi
+      done
+    }
+    ''}
+
     apply_extras() {
       local profile="$1"
       case "$profile" in
         power-saver)
           [[ -f /sys/devices/system/cpu/intel_pstate/no_turbo ]] && \
             echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
-          ${lib.optionalString hasNvidiaFgpm ''
-          for dev in /sys/bus/pci/devices/*/power/control; do
-            echo auto > "$dev" 2>/dev/null || true
-          done
-          ''}
+          ${lib.optionalString hasNvidiaFgpm "set_nvidia_power auto"}
           ;;
         balanced)
           [[ -f /sys/devices/system/cpu/intel_pstate/no_turbo ]] && \
             echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
-          ${lib.optionalString hasNvidiaFgpm ''
-          for dev in /sys/bus/pci/devices/*/power/control; do
-            echo auto > "$dev" 2>/dev/null || true
-          done
-          ''}
+          ${lib.optionalString hasNvidiaFgpm "set_nvidia_power auto"}
           ;;
         performance)
           [[ -f /sys/devices/system/cpu/intel_pstate/no_turbo ]] && \
             echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
-          ${lib.optionalString hasNvidiaFgpm ''
-          for dev in /sys/bus/pci/devices/*/power/control; do
-            echo on > "$dev" 2>/dev/null || true
-          done
-          ''}
+          ${lib.optionalString hasNvidiaFgpm "set_nvidia_power on"}
           ;;
       esac
       echo "[ppd-hook] extras applied for: $profile"

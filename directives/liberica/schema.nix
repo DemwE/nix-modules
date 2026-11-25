@@ -76,13 +76,20 @@ let
         # java25.versioned gives the suffixed variant; java25 itself is plain
         versioned = mkWrappers { withSuffix = true; };
       };
-    } (pkgs.lib.concatMapStrings (bin:
-      let name = if withSuffix then "${bin}${ver}" else bin; in ''
-        install -Dm755 /dev/stdin $out/bin/${name} <<'WRAPPER'
-        #!/bin/sh
-        exec "${jdk}/bin/${bin}" "$@"
-        WRAPPER
-      '') jdkTools);
+    } (
+      ''
+        mkdir -p $out/bin
+      ''
+      + pkgs.lib.concatMapStrings (bin:
+        let name = if withSuffix then "${bin}${ver}" else bin; in ''
+          if [ -x "${jdk}/bin/${bin}" ]; then
+            install -Dm755 /dev/stdin $out/bin/${name} <<'WRAPPER'
+          #!/bin/sh
+          exec "${jdk}/bin/${bin}" "$@"
+          WRAPPER
+          fi
+        '') jdkTools
+    );
 
 in
   pkgs.lib.makeOverridable mkWrappers {}

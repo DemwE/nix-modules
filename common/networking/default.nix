@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  pkgs-unstable ? null,
   config,
   ...
 }:
@@ -76,9 +75,7 @@
     networking.networkmanager.enable = true;
 
     networking.networkmanager.plugins = lib.mkIf config.my.networking.openvpn [
-      (
-        if pkgs-unstable != null then pkgs-unstable.networkmanager-openvpn else pkgs.networkmanager-openvpn
-      )
+      (pkgs.unstable.networkmanager-openvpn or pkgs.networkmanager-openvpn)
     ];
 
     networking.firewall = lib.mkIf config.my.networking.firewall.enable {
